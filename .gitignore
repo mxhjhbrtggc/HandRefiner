@@ -4,14 +4,32 @@
 *.pt
 *.bin
 *.safetensors
+
+# 数据文件格式（大文件或临时产物）
+*.npy
 *.pkl
+*.h5
+*.mat
 
-# 输出结果
-output/
-outputs/
-results/
+# 原始大型数据集（仅保留软链接或索引）
+datasets/FreiHAND/
+datasets/HAGRID/
+datasets/rdands/
+datasets/FreiHAND_512x512_full/
+datasets/HAGRID_512x512/
 
-# MeshGraphormer（外部依赖）
+# 输出和临时结果（保留最终评测结果的小结 CSV/txt，但排除原始图像）
+# output/ 和 output_* 保留，但里面的大图片由 .gitignore 处理
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.webp
+*.svg
+*.tiff
+
+# MeshGraphormer（外部大依赖）
 MeshGraphormer/
 
 # Python 虚拟环境
@@ -27,6 +45,9 @@ __pycache__/
 *$py.class
 *.so
 .Python
+*.egg-info/
+dist/
+build/
 
 # IDE
 .vscode/
@@ -40,11 +61,6 @@ __pycache__/
 .ipynb_checkpoints/
 *.ipynb
 
-# 数据文件（大型图像数据）
-*.jpg
-*.png
-data/
-
 # 日志文件
 *.log
 logs/
@@ -57,8 +73,14 @@ tmp/
 # OS
 Thumbs.db
 
-# 预处理产物
-depth_maps/
-masks/
-
-# 测试输出数据（保留 test/ 目录和 test.json 配置文件）
+# ============================================
+# 保留以下内容（用 git add -f 强制跟踪）：
+# ✓ new_files/（预处理/评测脚本）
+# ✓ cldm/, ldm/, preprocessor/（源码）
+# ✓ scripts/（工具脚本）
+# ✓ training/（训练脚本）
+# ✓ docs/（文档）
+# ✓ test/（测试配置）
+# ✓ *.py, *.yaml, *.md（所有代码和文档）
+# ✗ output_rhands/, output_freihand_100/, output_hagrid_100/（图片已被忽略）
+# ✗ paired_gt_rhands/（图片已被忽略）
